@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZamsXit Code</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Plus Jakarta Sans"','sans-serif']}}}}</script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+<body class="antialiased bg-[#101010] text-gray-200 selection:bg-blue-500/30 selection:text-white relative min-h-screen flex flex-col">
+    
+    <div class="fixed inset-0 z-0 pointer-events-none bg-grid-overlay opacity-50"></div>
+    <div class="fixed inset-0 z-0 pointer-events-none bg-gradient-to-t from-[#101010] via-transparent to-transparent"></div>
+
+    <header class="bg-[#101010]/80 backdrop-blur-xl border-b border-[#2a2a2a] sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3 group">
+                <span class="text-xl font-extrabold tracking-tighter text-white">ZamsXit</span>
+            </a>
+            <nav class="flex items-center gap-6">
+                <a href="/snippets" class="text-sm font-bold text-gray-400 hover:text-white transition-colors">Library</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-1 relative z-10 w-full max-w-7xl mx-auto px-6 py-20 lg:py-32 flex flex-col lg:flex-row items-center justify-between gap-16">
+        <div class="w-full lg:w-1/2 fade-in">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-[#141414] border border-[#2a2a2a] rounded-full mb-8 shadow-lg">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">System Operational v1.0</span>
+            </div>
+            <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tighter text-white mb-6 leading-[1.1]">
+                Write Less.<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-violet-500">Build More.</span>
+            </h1>
+            <p class="text-lg text-gray-500 font-medium mb-10 max-w-lg leading-relaxed">
+                Kumpulan script scraper, config, dan baris kode ajaib yang pastinya bakal lo butuhin buat project. Nggak perlu nulis dari nol, tinggal copas dan gas! 
+            </p>
+            <div class="flex items-center gap-4">
+                <a href="/snippets" class="bg-white text-black hover:bg-gray-200 font-extrabold px-8 py-4 rounded-xl transition-all active:scale-95 text-sm shadow-[0_0_20px_rgba(255,255,255,0.1)] flex items-center gap-2">
+                    Explore Code <span class="material-icons text-[18px]">arrow_forward</span>
+                </a>
+                    <a href="https://github.com/zamsxit" target="_blank" class="bg-[#141414] border border-[#2a2a2a] text-white hover:border-gray-500 font-bold px-8 py-4 rounded-xl transition-colors text-sm flex items-center gap-2">
+                    <i class="fa-brands fa-github text-[18px]"></i> GitHub
+                </a>
+            </div>
+        </div>
+
+<div class="w-full lg:w-1/2 fade-in" style="animation-delay: 0.2s;">
+            <div class="bg-[#141414] border border-[#2a2a2a] rounded-2xl overflow-hidden shadow-2xl transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                <div class="bg-[#101010] border-b border-[#2a2a2a] px-6 py-4 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <div class="w-3 h-3 rounded-full bg-rose-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                    </div>
+                    <span class="text-xs font-mono text-gray-500 font-bold">zamsxit.info.js</span>
+                </div>
+                <pre class="p-0 m-0 text-[13px] font-mono"><code class="language-javascript !bg-[#141414] !p-8">export default {
+  platform: "ZamsXit Code",
+  purpose: "Markas Amunisi Coding",
+  assets: [
+    "🔥 Auto Scraper Scripts",
+    "⚡️ Bypass Payloads",
+    "🛠️ API Configs & Tools",
+    "💻 Raw Code Ready-to-Use"
+  ],
+  workflow: "Cari ➔ Copas ➔ Done.",
+  status: "System Online 🟢"
+};</code></pre>
+            </div>
+        </div>
+    </main>
+
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

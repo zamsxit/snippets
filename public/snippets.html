@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZamsXit Code | Snippets</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Plus Jakarta Sans"','sans-serif']}}}}</script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="antialiased bg-[#101010] text-gray-200 selection:bg-blue-500/30 selection:text-white relative min-h-screen flex flex-col">
+    
+    <div class="fixed inset-0 z-0 pointer-events-none bg-grid-overlay opacity-50"></div>
+    <div class="fixed inset-0 z-0 pointer-events-none bg-gradient-to-t from-[#101010] via-transparent to-transparent"></div>
+
+    <header class="bg-[#101010]/80 backdrop-blur-xl border-b border-[#2a2a2a] sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3 group">
+                <span class="text-xl font-extrabold tracking-tighter text-white">ZamsXit</span>
+            </a>
+            <div class="flex items-center gap-6">
+                <div class="relative hidden md:block w-64">
+                    <span class="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-[18px]">search</span>
+                    <input type="text" id="desktopSearch" placeholder="Search code..." class="w-full bg-[#141414] border border-[#2a2a2a] rounded-xl pl-10 pr-4 py-2 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors">
+                </div>
+<nav class="flex items-center gap-5">
+                    <a href="https://github.com/ZamsXit" target="_blank" class="text-gray-400 hover:text-white transition-colors flex items-center">
+                        <i class="fa-brands fa-github text-[22px]"></i>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+<main class="flex-1 relative z-10 w-full max-w-7xl mx-auto px-6 pt-10 pb-32">
+        <div class="mb-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b border-[#2a2a2a] pb-8">
+            <div>
+                <h1 class="text-3xl font-extrabold tracking-tighter text-white mb-2">Snippet Library</h1>
+                <p class="text-sm text-gray-500 font-medium">Explore and copy encrypted snippets instantly.</p>
+            </div>
+            <div class="relative w-full md:hidden">
+                <span class="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-[18px]">search</span>
+                <input type="text" id="mobileSearch" placeholder="Search code..." class="w-full bg-[#141414] border border-[#2a2a2a] rounded-xl pl-10 pr-4 py-3.5 text-sm text-white focus:outline-none focus:border-blue-500">
+            </div>
+        </div>
+
+        <div id="categoryFilters" class="flex items-center gap-2 overflow-x-auto w-full pb-4 mb-6 hide-scrollbar"></div>
+
+        <div id="snippetContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20"></div>
+    </main>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>

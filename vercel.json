@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "api/index.js", "use": "@vercel/node" },
+    { "src": "public/**/*", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/index.js" },
+    { "src": "/snippets", "dest": "/public/snippets.html" },
+    { "src": "/snippet", "dest": "/public/detail.html" },
+    { "src": "/zamsxit/login", "dest": "/public/admin.html" },
+    { "src": "/zamsxit/dashboard", "dest": "/public/admin.html" },
+    { "src": "/(.*)", "dest": "/public/$1" }
+  ]
+}

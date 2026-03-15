@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZamsXit Code | Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['"Plus Jakarta Sans"','sans-serif']}}}}</script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="antialiased bg-[#101010] text-gray-200 relative overflow-hidden h-screen flex">
+    
+    <div class="fixed inset-0 z-0 pointer-events-none bg-grid-overlay opacity-40"></div>
+    <div class="fixed inset-0 z-0 pointer-events-none bg-gradient-to-t from-[#101010] via-transparent to-transparent"></div>
+
+    <div id="loginSection" class="fixed inset-0 flex items-center justify-center z-[100] px-6 bg-[#101010]">
+        <div class="fixed inset-0 z-0 pointer-events-none bg-grid-overlay opacity-40"></div>
+        <div class="w-full max-w-sm bg-[#141414]/90 backdrop-blur-xl border border-[#2a2a2a] p-10 rounded-3xl shadow-2xl relative overflow-hidden fade-in">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50"></div>
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-black tracking-tighter text-white mb-1">ZamsXit</h2>
+                <p class="text-xs text-gray-500 font-medium">System Core Authentication</p>
+            </div>
+            <input type="password" id="adminKey" class="w-full bg-[#0a0a0a] border border-[#2a2a2a] focus:border-blue-500 focus:outline-none rounded-xl px-4 py-3.5 mb-5 text-center font-mono tracking-widest text-sm text-white transition-colors" placeholder="SECRET KEY">
+            <button id="loginBtn" class="w-full bg-white text-black hover:bg-gray-200 font-extrabold py-3.5 rounded-xl transition-all active:scale-95 text-sm flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+                Enter Console <span class="material-icons text-[16px]">arrow_forward</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="dashboardSection" class="hidden w-full h-full relative z-10 flex-col lg:flex-row">
+        
+        <div class="lg:hidden bg-[#101010]/80 backdrop-blur-xl border-b border-[#2a2a2a] p-4 flex items-center justify-between sticky top-0 z-50">
+            <a href="/" class="flex items-center">
+                <h1 class="text-xl font-black tracking-tighter text-white">ZamsXit</h1>
+            </a>
+            <button id="mobileMenuBtn" class="text-gray-400 p-2 hover:text-white transition-colors"><span class="material-icons">menu</span></button>
+        </div>
+
+        <div id="mobileOverlay" class="fixed inset-0 bg-black/80 z-[80] hidden lg:hidden backdrop-blur-sm transition-opacity"></div>
+
+        <aside id="sidebar" class="fixed inset-y-0 left-0 transform -translate-x-full lg:relative lg:translate-x-0 w-72 bg-[#101010]/60 backdrop-blur-2xl border-r border-[#2a2a2a] z-[90] flex flex-col transition-transform duration-300">
+            <div class="p-8 hidden lg:flex items-center justify-between border-b border-[#2a2a2a]/50">
+                <a href="/" class="flex items-center group cursor-pointer w-full">
+                    <h1 class="text-2xl font-black tracking-tighter text-white group-hover:text-blue-400 transition-colors">ZamsXit</h1>
+                </a>
+            </div>
+            
+            <div class="flex-1 overflow-y-auto px-5 py-8 hide-scrollbar">
+                <p class="text-[10px] font-extrabold text-gray-600 uppercase tracking-widest mb-4 px-3">Main Menu</p>
+                <div class="space-y-2">
+                    <button onclick="switchTab('overview')" id="nav-overview" class="nav-btn w-full flex items-center gap-3 py-3.5 px-4 text-sm text-gray-400 hover:bg-white/5 hover:text-white rounded-xl font-bold transition-all border border-transparent"><span class="material-icons text-[18px] text-emerald-400">dashboard</span> Overview</button>
+                    <button onclick="switchTab('list')" id="nav-list" class="nav-btn w-full flex items-center gap-3 py-3.5 px-4 text-sm text-gray-400 hover:bg-white/5 hover:text-white rounded-xl font-bold transition-all border border-transparent"><span class="material-icons text-[18px] text-blue-400">dns</span> Code</button>
+                    <button onclick="switchTab('categories')" id="nav-categories" class="nav-btn w-full flex items-center gap-3 py-3.5 px-4 text-sm text-gray-400 hover:bg-white/5 hover:text-white rounded-xl font-bold transition-all border border-transparent"><span class="material-icons text-[18px] text-amber-400">category</span> Categories</button>
+                    <button onclick="switchTab('form')" id="nav-form" class="nav-btn w-full flex items-center gap-3 py-3.5 px-4 text-sm text-gray-400 hover:bg-white/5 hover:text-white rounded-xl font-bold transition-all border border-transparent"><span class="material-icons text-[18px] text-violet-400">terminal</span> Editor</button>
+                </div>
+            </div>
+            
+            <div class="p-5 border-t border-[#2a2a2a]/50 space-y-2">
+                <a href="/" class="w-full flex items-center justify-center gap-2 py-3.5 px-4 text-sm text-gray-400 hover:text-white hover:bg-white/5 border border-transparent rounded-xl font-bold transition-all">
+                    <span class="material-icons text-[16px]">public</span> Back to Web
+                </a>
+                <button id="logoutBtn" class="w-full flex items-center justify-center gap-2 py-3.5 px-4 text-sm text-gray-500 hover:text-rose-400 hover:bg-rose-500/10 border border-transparent hover:border-rose-500/20 rounded-xl font-bold transition-all">
+                    <span class="material-icons text-[16px]">power_settings_new</span> End Session
+                </button>
+            </div>
+        </aside>
+
+        <main class="flex-1 flex flex-col w-full h-screen overflow-y-auto relative">
+            <header class="hidden lg:flex bg-[#101010]/80 backdrop-blur-xl border-b border-[#2a2a2a] px-10 py-5 items-center justify-between sticky top-0 z-50">
+                <h2 class="text-sm font-extrabold text-white tracking-wide" id="headerTitle">Dashboard Overview</h2>
+                <div class="flex items-center gap-2 px-3 py-1.5 bg-[#141414] border border-[#2a2a2a] rounded-full">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Admin Access</span>
+                </div>
+            </header>
+
+            <div class="p-6 lg:p-10 w-full max-w-6xl mx-auto flex-1 pb-32">
+                
+                <div id="tab-overview" class="tab-content block fade-in">
+                    <div class="mb-8">
+                        <h2 class="text-3xl font-black tracking-tighter text-white mb-2">System Status</h2>
+                        <p class="text-sm text-gray-500 font-medium">Real-time metrics of your code registry.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-[#141414] border border-[#2a2a2a] p-6 rounded-3xl relative overflow-hidden shadow-xl hover:border-blue-500/30 transition-colors group">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center"><span class="material-icons text-[20px]">data_object</span></div>
+                            </div>
+                            <h3 class="text-4xl font-black text-white tracking-tighter mb-1" id="statTotal">0</h3>
+                            <p class="text-[11px] text-gray-500 font-bold uppercase tracking-widest">Total Records</p>
+                        </div>
+                        
+                        <div class="bg-[#141414] border border-[#2a2a2a] p-6 rounded-3xl relative overflow-hidden shadow-xl hover:border-amber-500/30 transition-colors group">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center"><span class="material-icons text-[20px]">category</span></div>
+                            </div>
+                            <h3 class="text-4xl font-black text-white tracking-tighter mb-1" id="statCats">0</h3>
+                            <p class="text-[11px] text-gray-500 font-bold uppercase tracking-widest">Categories</p>
+                        </div>
+
+                        <div class="bg-[#141414] border border-[#2a2a2a] p-6 rounded-3xl relative overflow-hidden shadow-xl hover:border-emerald-500/30 transition-colors group">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center"><span class="material-icons text-[20px]">visibility</span></div>
+                            </div>
+                            <h3 class="text-4xl font-black text-white tracking-tighter mb-1" id="statViews">0</h3>
+                            <p class="text-[11px] text-gray-500 font-bold uppercase tracking-widest">Total Views</p>
+                        </div>
+
+                        <div class="bg-[#141414] border border-[#2a2a2a] p-6 rounded-3xl relative overflow-hidden shadow-xl hover:border-purple-500/30 transition-colors group">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center"><span class="material-icons text-[20px]">content_copy</span></div>
+                            </div>
+                            <h3 class="text-4xl font-black text-white tracking-tighter mb-1" id="statCopies">0</h3>
+                            <p class="text-[11px] text-gray-500 font-bold uppercase tracking-widest">Total Copied</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-list" class="tab-content hidden fade-in">
+                    <div class="mb-8 flex items-center justify-between border-b border-[#2a2a2a] pb-6">
+                        <div>
+                            <h2 class="text-3xl font-black tracking-tighter text-white mb-2">Code List</h2>
+                            <p class="text-sm text-gray-500 font-medium">Manage your deployed snippets.</p>
+                        </div>
+                        <button onclick="switchTab('form')" class="px-5 py-3 bg-white text-black text-xs font-extrabold rounded-xl hover:bg-gray-200 transition-all active:scale-95 flex items-center gap-2 shadow-lg"><span class="material-icons text-[16px]">add</span> Deploy New</button>
+                    </div>
+                    
+                    <div class="bg-[#141414] border border-[#2a2a2a] rounded-3xl shadow-xl overflow-hidden">
+                        <div class="overflow-x-auto hide-scrollbar">
+                            <table class="w-full text-left border-collapse min-w-[800px]">
+                                <thead>
+                                    <tr class="bg-[#101010] border-b border-[#2a2a2a] text-[10px] font-extrabold uppercase tracking-widest text-gray-500">
+                                        <th class="p-6 w-2/5">Snippet Identity</th>
+                                        <th class="p-6">Category</th>
+                                        <th class="p-6">Engagement</th>
+                                        <th class="p-6">Privacy</th>
+                                        <th class="p-6 text-right">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminTableBody" class="text-sm divide-y divide-[#2a2a2a]"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tab-categories" class="tab-content hidden fade-in max-w-3xl mx-auto">
+                    <div class="mb-8 border-b border-[#2a2a2a] pb-6">
+                        <h2 class="text-3xl font-black tracking-tighter text-white mb-2">Categories</h2>
+                        <p class="text-sm text-gray-500 font-medium">Organize your code structure.</p>
+                    </div>
+                    
+                    <form id="addCategoryForm" class="flex flex-col sm:flex-row gap-4 mb-8">
+                        <input type="text" id="newCategoryName" required placeholder="New category name (e.g. Auth)" class="flex-1 bg-[#141414] border border-[#2a2a2a] focus:border-white focus:outline-none rounded-2xl px-5 py-4 text-sm text-white transition-colors">
+                        <button type="submit" class="px-8 py-4 bg-white text-black text-sm font-extrabold rounded-2xl hover:bg-gray-200 transition-all active:scale-95 shadow-lg whitespace-nowrap">Add Category</button>
+                    </form>
+                    
+                    <div class="bg-[#141414] border border-[#2a2a2a] rounded-3xl shadow-xl overflow-hidden">
+                        <div class="bg-[#101010] border-b border-[#2a2a2a] px-6 py-4">
+                            <span class="text-[10px] font-extrabold uppercase tracking-widest text-gray-500">Active Tags</span>
+                        </div>
+                        <ul id="categoryList" class="divide-y divide-[#2a2a2a]"></ul>
+                    </div>
+                </div>
+
+                <div id="tab-form" class="tab-content hidden fade-in max-w-4xl mx-auto">
+                    <div class="mb-8 flex items-center justify-between border-b border-[#2a2a2a] pb-6">
+                        <div>
+                            <h2 class="text-3xl font-black tracking-tighter text-white mb-2" id="formTitle">Editor</h2>
+                            <p class="text-sm text-gray-500 font-medium">Write, encrypt, and deploy.</p>
+                        </div>
+                        <button type="button" onclick="resetForm()" class="px-5 py-2.5 bg-[#141414] border border-[#2a2a2a] text-gray-400 hover:text-white hover:border-gray-500 text-xs font-bold rounded-xl flex items-center gap-2 transition-all"><span class="material-icons text-[16px]">refresh</span> Reset</button>
+                    </div>
+                    
+                    <div id="noCategoryWarning" class="hidden mb-6 p-5 bg-rose-500/10 border border-rose-500/30 rounded-2xl text-rose-400 text-sm font-bold flex items-center gap-3">
+                        <span class="material-icons">warning</span> System Halted: You must create a category first!
+                    </div>
+
+                    <form id="snippetEditorForm" class="bg-[#141414] border border-[#2a2a2a] p-8 md:p-10 rounded-3xl flex flex-col gap-7 shadow-2xl relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-violet-500 to-transparent opacity-50"></div>
+                        
+                        <input type="hidden" id="editId">
+                        <input type="hidden" id="editGistId">
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-7">
+                            <div>
+                                <label class="block text-[11px] font-extrabold uppercase tracking-widest text-gray-500 mb-3">Snippet Title</label>
+                                <input type="text" id="title" required class="w-full bg-[#0a0a0a] border border-[#2a2a2a] focus:border-blue-500 focus:outline-none rounded-xl px-5 py-4 text-sm text-white transition-colors" placeholder="e.g. JWT Authentication">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-extrabold uppercase tracking-widest text-gray-500 mb-3">Category</label>
+                                <div class="relative w-full" id="categoryDropdownWrapper">
+                                    <input type="hidden" id="categorySelectValue" required>
+                                    <div id="customDropdownBtn" class="w-full bg-[#0a0a0a] border border-[#2a2a2a] rounded-xl px-5 py-4 text-sm text-gray-400 cursor-pointer flex justify-between items-center transition-colors hover:border-gray-600">
+                                        <span id="customDropdownText" class="truncate font-medium">Select category...</span>
+                                        <span class="material-icons text-gray-500 text-[18px] transition-transform duration-300" id="customDropdownIcon">expand_more</span>
+                                    </div>
+                                    <div id="customDropdownMenu" class="absolute z-50 w-full mt-2 bg-[#1a1a1a] border border-[#2a2a2a] rounded-2xl shadow-2xl hidden opacity-0 transition-opacity duration-200 overflow-hidden">
+                                        <ul id="customDropdownList" class="max-h-56 overflow-y-auto hide-scrollbar divide-y divide-[#2a2a2a]"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-7">
+                            <div>
+                                <label class="block text-[11px] font-extrabold uppercase tracking-widest text-gray-500 mb-3">Filename</label>
+                                <input type="text" id="filename" required class="w-full bg-[#0a0a0a] border border-[#2a2a2a] focus:border-blue-500 focus:outline-none rounded-xl px-5 py-4 text-sm text-white font-mono transition-colors" placeholder="auth.js">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-extrabold uppercase tracking-widest text-gray-500 mb-3 flex items-center justify-between">
+                                    <span>Encryption Key</span>
+                                    <span class="text-[9px] text-gray-600">OPTIONAL</span>
+                                </label>
+                                <div class="relative">
+                                    <input type="password" id="password" class="w-full bg-[#0a0a0a] border border-[#2a2a2a] focus:border-rose-500 focus:outline-none rounded-xl px-5 py-4 text-sm text-white pr-12 transition-colors font-mono" placeholder="Leave blank for public">
+                                    <button type="button" id="togglePasswordBtn" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white transition-colors focus:outline-none">
+                                        <span class="material-icons text-[18px]" id="togglePasswordIcon">visibility_off</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-extrabold uppercase tracking-widest text-gray-500 mb-3">Description</label>
+                            <textarea id="description" required class="w-full bg-[#0a0a0a] border border-[#2a2a2a] focus:border-blue-500 focus:outline-none rounded-xl px-5 py-4 h-24 text-sm text-white resize-none transition-colors" placeholder="Brief explanation of what this code does..."></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-extrabold uppercase tracking-widest text-gray-500 mb-3 flex items-center gap-2"><span class="material-icons text-[14px] text-blue-500">code</span> Source Code</label>
+                            <textarea id="code" required class="w-full bg-[#0a0a0a] border border-[#2a2a2a] focus:border-blue-500 focus:outline-none rounded-xl px-6 py-6 h-80 font-mono text-[13px] text-gray-300 leading-relaxed transition-colors" spellcheck="false" placeholder="// Write your brilliant logic here..."></textarea>
+                        </div>
+                        
+                        <div class="pt-4 mt-2 border-t border-[#2a2a2a]">
+                            <button type="submit" id="submitSnippetBtn" class="w-full bg-white text-black hover:bg-gray-200 font-black py-4 rounded-xl transition-all active:scale-95 text-sm uppercase tracking-widest shadow-[0_0_20px_rgba(255,255,255,0.15)] flex justify-center items-center gap-2">
+                                <span class="material-icons text-[18px]">rocket_launch</span> Deploy Code
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="w-full flex items-center justify-center opacity-40 mt-20">
+                    <div class="w-1 h-1 rounded-full bg-gray-400"></div>
+                    <div class="w-16 h-px bg-gradient-to-r from-gray-500 to-transparent ml-3"></div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <div id="confirmModal" class="hidden fixed inset-0 z-[110] bg-[#101010]/90 backdrop-blur-md flex items-center justify-center p-6 transition-all">
+        <div class="w-full max-w-sm bg-[#141414] border border-[#2a2a2a] p-8 rounded-3xl shadow-2xl relative overflow-hidden fade-in scale-95 transition-transform duration-200" id="confirmBox">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-rose-500 to-transparent opacity-50"></div>
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 bg-gradient-to-br from-rose-500/20 to-pink-500/20 border border-rose-500/30 rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-rose-500/10">
+                    <span class="material-icons text-3xl text-rose-400">warning</span>
+                </div>
+                <h2 class="text-xl font-black tracking-tighter text-white mb-2" id="confirmTitle">Confirm Action</h2>
+                <p class="text-sm text-gray-500 font-medium" id="confirmMessage">Are you sure?</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <button id="confirmCancelBtn" class="flex-1 bg-[#0a0a0a] border border-[#2a2a2a] text-gray-400 hover:text-white font-bold py-3.5 rounded-xl transition-all active:scale-95 text-sm">Cancel</button>
+                <button id="confirmYesBtn" class="flex-1 bg-rose-600 hover:bg-rose-500 text-white font-bold py-3.5 rounded-xl transition-all active:scale-95 text-sm shadow-[0_0_15px_rgba(225,29,72,0.2)]">Execute</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>

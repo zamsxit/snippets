@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/base16/material-darker.min.css');
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #101010;
+    color: #e5e7eb;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #2e2e2e; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #4b5563; }
+
+/* Grid diperjelas (opacity dari 0.03 jadi 0.06) */
+.bg-grid-overlay {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px), 
+                      linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+    background-size: 32px 32px;
+}
+
+.fade-in { animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.codeverse-input {
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    transition: all 0.2s ease;
+}
+.codeverse-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.5);
+    outline: none;
+}
+
+/* Custom icon for select dropdown */
+select.codeverse-input {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.2em;
+}
+
+#toast {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(100px);
+    opacity: 0;
+}
+#toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
